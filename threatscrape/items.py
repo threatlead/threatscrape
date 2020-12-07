@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import datetime
-import ipaddr
+from ipaddress import IPv4Address
 
 
 @dataclass
@@ -15,7 +15,7 @@ class BlogPostItem:
 
 @dataclass
 class IpaddressBlacklistItem:
-    ipaddress: ipaddr.IPAddress
+    ipaddress: IPv4Address
     service: str
     last_seen: datetime.datetime
 
@@ -29,7 +29,7 @@ class IntelItem:
     date: datetime.date = None
     domain: str = None
     url: str = None
-    ipaddress: ipaddr.IPAddress = None
+    ipaddress: IPv4Address = None
     country: str = None
     asn: str = None
 
