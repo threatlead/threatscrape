@@ -24,6 +24,6 @@ class OpenDnsTopDomainsSpider(scrapy.Spider):
             return opendns_file.read()
 
     def parse(self, response):
-        for line in self.parse_zip(response=response, filename=self.default_file).splitlines()[0:10]:
+        for line in self.parse_zip(response=response, filename=self.default_file).splitlines():
             rank, suffix = line.split(b',')
             yield DomainItem(name=suffix.decode('idna'), id=int(rank))
