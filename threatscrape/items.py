@@ -51,3 +51,9 @@ class AsnItem:
     id: int
     name: str
     country_code: str = None
+
+
+@dataclass
+class DomainItem:
+    name: str
+    id: int = None
