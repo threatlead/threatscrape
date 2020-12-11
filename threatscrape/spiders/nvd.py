@@ -32,4 +32,3 @@ class NvdCveSpider(CrawlSpider):
                     modified=dateparser.parse(cve['lastModifiedDate']),
                     json=cve,
                 )
-                sys.exit()
