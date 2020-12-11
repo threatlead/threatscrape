@@ -1,7 +1,7 @@
 import scrapy
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
-from threatscrape.items import IanaTld
+from threatscrape.items import IanaTldItem
 import dateparser
 import idna
 import re
@@ -46,7 +46,7 @@ class IanaTldSpider(CrawlSpider):
             ipv4 = list(filter(lambda ip: type(ip) == IPv4Address, ips))
             ipv6 = list(filter(lambda ip: type(ip) == IPv6Address, ips))
             nameservers.append([domain, ipv4, ipv6])
-        yield IanaTld(
+        yield IanaTldItem(
             idna=name[1] if name else None,
             name=idna.decode(name[1]) if name else None,
             type=tld_type,

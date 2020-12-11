@@ -35,7 +35,7 @@ class IntelItem:
 
 
 @dataclass
-class IanaTld:
+class IanaTldItem:
     description: str
     idna: str
     name: str
@@ -57,3 +57,11 @@ class AsnItem:
 class DomainItem:
     name: str
     id: int = None
+
+
+@dataclass
+class CveItem:
+    cve: str
+    json: dict
+    published: datetime.datetime
+    modified: datetime.datetime
