@@ -14,12 +14,15 @@ class NvdCveSpider(CrawlSpider):
     custom_settings = {
         'ROBOTSTXT_OBEY': False,  # to support pagination that uses "search"
     }
+    rules = ()
 
-    rules = (
-        # Select and Parse files we are interested in...
-        # add deny_extensions as by default scrapy ignores zip files
-        Rule(LinkExtractor(allow=r'/feeds/json/cve/1\.1/.*?\.json\.zip', deny_extensions=[]), callback='parse_cve'),
-    )
+    def __init__(self, *args, **kwargs):
+        if kwargs.get('type') and kwargs.get('type').upper() == 'MODIFIED':
+            rule = LinkExtractor(allow=r'feeds/json/cve/1\.1/.*?modified\.json\.zip', deny_extensions=[])
+        else:
+            rule = LinkExtractor(allow=r'/feeds/json/cve/1\.1/.*?\.json\.zip', deny_extensions=[])
+        self.rules = self.rules = (Rule(rule, callback='parse_cve'), )
+        super(NvdCveSpider, self).__init__(*args, **kwargs)
 
     @staticmethod
     def description(cve):
