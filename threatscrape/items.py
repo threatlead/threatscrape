@@ -63,5 +63,10 @@ class DomainItem:
 class CveItem:
     cve: str
     json: dict
-    published: datetime.datetime
-    modified: datetime.datetime
+    description: str = None
+    cvss3_score: float = None
+    cvss3_severity: str = None
+    cvss2_score: float = None
+    cvss2_severity: str = None
+    published: datetime.datetime = None
+    modified: datetime.datetime = None
